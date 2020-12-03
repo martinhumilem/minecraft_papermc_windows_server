@@ -17,3 +17,6 @@ Zde naleznete skript pro jednoduché vytvoření vanila minecraft serveru pomoc�
 Sktipt pro spuštění, vytvoří automaticky eula soubor, ve kterém se akceptují pravidla PaperMC. Dále vytvoří server.properties soubor s výchozím nastavením serveru. A následně spustí samotný server v režimu konzole.
 
 Jak na to: Zkontrolujte instalaci / aktualizaci java. Vytvořte si adresář pro server a do něj stáhněte skript. Skript spusťte.
+
+Následně si server můžete nakonfigurovat dle svých představ.
+PLuginy pro server můžete použít ze spigot stránek.
