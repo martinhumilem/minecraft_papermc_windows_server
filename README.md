@@ -6,7 +6,12 @@ Here is script for windows, for easy create vanila minecraft server. You need be
 
 How to: Install java, create server directory, download script to directory and start script.
 
-After start, script download java server, create eula acception file and create default server.properties file. And start server in console mode, create directory structure. After full start you can stop server and configure settings thorough configuration files. For this server you can use plugins from spigot site.
+After FIRST start, script download java server, create eula acception file and create default server.properties file. And start server in console mode, create directory structure. After full start you can stop server and configure settings thorough configuration files. For this server you can use plugins from spigot site.
+
+After next start run script.
+
+IMPORTANT: script not check automatic UPDATES. For updates start script with /forceupdate switch, or delete .jar files and start script.
+
 
 ps: sorry for my poor english
 
@@ -20,3 +25,10 @@ Jak na to: Zkontrolujte instalaci / aktualizaci java. Vytvořte si adresář pro
 
 Následně si server můžete nakonfigurovat dle svých představ.
 PLuginy pro server můžete použít ze spigot stránek.
+
+Při prvním spuštění se stáhne posledn verze paperMC (aktuáalně 1.16.4)
+Pozor při dalším spuštění se již aktualizace nekontroluje !!!
+Pokud chcete server aktualizovat spusťte skript s přepínačem /forceupdate , nebo smažte .jar soubory a skript je automaticky znovu stáhne.
+
+
+
