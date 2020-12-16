@@ -1,6 +1,12 @@
-
+cls
 rem for /f "tokens=1,2 delims=:" %%w IN ('%~d0')do set homedir=%%w && %homedir%:
 set homedir=%~d0 && set homedir=%homedir: =% && %homedir% && cd "%~dp0"
+
+set homedir=%~d0
+set homedir=%homedir: =%
+%homedir%
+cd "%~dp0"
+
 
 set paperdir1=paper_server
 if not exist %paperdir1% md %paperdir1%
@@ -16,11 +22,12 @@ if not exist "%paperdir1%\LatestPaperMc.jar" if not exist *.jar goto exit
 
 
 :start1
-for /f "tokens=1 delims=?" %%a in ('dir /b /a-d /od *paper*.jar') do set jar1=%%a
+if exist LatestPaperMc.jar copy /y LatestPaperMc.jar %paperdir1%\
+if exist LatestPaperMc.jar del /f /q LatestPaperMc.jar
 
+for /f "tokens=1 delims=?" %%a in ('dir /s /b /a-d /od %~dp0%paperdir1%\*latest*.jar') do set jar1=%%a
+if "%jar1%"=="" goto exit
 
-copy /y %jar1% %paperdir1%\
-del /f /q %jar1%
 
 echo #By changing the setting below to TRUE you are indicating your agreement to our EULA (https://account.mojang.com/documents/minecraft_eula).> %eulafile1%
 echo #You also agree that tacos are tasty, and the best food in the world.>> %eulafile1%
@@ -31,7 +38,7 @@ if not exist "%paperdir1%\server.properties" call :serverprop1
 
 cd %paperdir1%\
 
-set startcmd1=java -Xms1G -Xmx4G -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true -jar %jar1% nogui
+set startcmd1=java -Xms1G -Xmx4G -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true -jar "%jar1%" nogui
 
 %startcmd1%
 
@@ -91,7 +98,7 @@ echo prevent-proxy-connections=false>> "%paperdir1%\server.properties"
 echo enable-jmx-monitoring=false>> "%paperdir1%\server.properties"
 echo enable-rcon=false>> "%paperdir1%\server.properties"
 echo rate-limit=0 >> "%paperdir1%\server.properties"
-echo motd=A Minecraft Server>> "%paperdir1%\server.properties"
+echo motd=PaperMC server by MartinHumilem>> "%paperdir1%\server.properties"
 
 goto :eof
 
